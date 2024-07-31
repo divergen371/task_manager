@@ -37,7 +37,14 @@ function fetchTasks() {
           updateTask(task.id, completedCheckbox.checked);
         });
 
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+          deleteTask(task.id);
+        });
+
         taskActions.appendChild(completedCheckbox);
+        taskActions.appendChild(deleteButton);
         taskHeader.appendChild(taskTitle);
         taskHeader.appendChild(taskActions);
 
@@ -121,6 +128,37 @@ function updateTask(id, completed) {
     .catch((error) => {
       console.error("Error updating task:", error);
       alert("Error updating task: " + error.message);
+    });
+}
+
+function deleteTask(id) {
+  fetch("delete_task.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `id=${encodeURIComponent(id)}`,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((err) => {
+          throw new Error(
+            `HTTP error! status: ${response.status}, message: ${err.message}`
+          );
+        });
+      }
+      return response.json();
+    })
+    .then((result) => {
+      if (result.status === "success") {
+        fetchTasks();
+      } else {
+        throw new Error(result.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error deleting task:", error);
+      alert("Error deleting task: " + error.message);
     });
 }
 
