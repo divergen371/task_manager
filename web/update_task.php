@@ -9,13 +9,7 @@ if (!isset($_POST['id']) || !isset($_POST['completed'])) {
 }
 
 $id = $_POST['id'];
-$completed = filter_var($_POST['completed'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-
-if ($completed === null) {
-    http_response_code(400);
-    echo json_encode(['status' => 'error', 'message' => 'Invalid boolean value']);
-    exit;
-}
+$completed = $_POST['completed'] === 'true' ? 'true' : 'false';
 
 try {
     $sql = 'UPDATE tasks SET completed = :completed WHERE id = :id';
