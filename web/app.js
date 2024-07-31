@@ -92,12 +92,15 @@ function addTask() {
 }
 
 function updateTask(id, completed) {
+  console.log(`Updating task id=${id}, completed=${completed}`); // デバッグ用にログを追加
   fetch("update_task.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: `id=${encodeURIComponent(id)}&completed=${completed}`,
+    body: `id=${encodeURIComponent(id)}&completed=${encodeURIComponent(
+      completed ? "true" : "false"
+    )}`,
   })
     .then((response) => {
       if (!response.ok) {
