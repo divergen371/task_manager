@@ -39,6 +39,7 @@ function fetchTasks() {
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
+        deleteButton.className = "button delete";
         deleteButton.addEventListener("click", () => {
           deleteTask(task.id);
         });

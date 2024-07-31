@@ -85,3 +85,70 @@ li .task-actions {
 li .task-actions input[type="checkbox"] {
   margin-right: 10px;
 }
+
+/* タスクリストのスタイル */
+#taskList {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* タスクカードのスタイル */
+#taskList li {
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%; /* 幅を80%に設定 */
+  max-width: 800px; /* 最大幅を800pxに設定 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* タスクヘッダーのスタイル */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* タスクタイトルのスタイル */
+.task-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* タスクアクションのスタイル */
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* タスク説明のスタイル */
+.task-header + p {
+  margin-top: 10px;
+}
+
+/* 共通ボタンのスタイル */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button.delete {
+  background-color: #dc3545;
+}
+
+.button.delete:hover {
+  background-color: #c82333;
+}
